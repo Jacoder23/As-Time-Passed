@@ -21,6 +21,7 @@ public class DanmakuEmitter : DanmakuBehaviour {
   float timer;
   DanmakuConfig config;
   IFireable fireable;
+  bool firstFrame = true;
 
   /// <summary>
   /// Start is called on the frame when a script is enabled just before
@@ -40,22 +41,32 @@ public class DanmakuEmitter : DanmakuBehaviour {
   /// Update is called every frame, if the MonoBehaviour is enabled.
   /// </summary>
   void Update() {
-    if (fireable == null) return;
-    var deltaTime = Time.deltaTime;
-    if (FrameRate > 0) {
-      deltaTime = 1f / FrameRate;
+    if (!firstFrame)
+    {
+        if (fireable == null) return;
+        var deltaTime = Time.deltaTime;
+        if (FrameRate > 0)
+        {
+            deltaTime = 1f / FrameRate;
+        }
+        timer -= deltaTime;
+        if (timer < 0)
+        {
+            config = new DanmakuConfig
+            {
+                Position = transform.position,
+                Rotation = transform.rotation.eulerAngles.z * Mathf.Deg2Rad,
+                Speed = Speed,
+                AngularSpeed = AngularSpeed,
+                Color = Color
+            };
+            fireable.Fire(config);
+            timer = 1f / FireRate.GetValue();
+        }
     }
-    timer -= deltaTime;
-    if (timer < 0) {
-      config = new DanmakuConfig {
-        Position = transform.position,
-        Rotation = transform.rotation.eulerAngles.z * Mathf.Deg2Rad,
-        Speed = Speed,
-        AngularSpeed = AngularSpeed,
-        Color = Color
-      };
-      fireable.Fire(config);
-      timer = 1f / FireRate.GetValue();
+    else
+    {
+        firstFrame = false;
     }
   }
 
