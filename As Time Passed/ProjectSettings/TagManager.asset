@@ -39,6 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Stage
+    uniqueID: 1771109087
+    locked: 0
+  - name: Combat
+    uniqueID: 2175280911
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bullets
+    uniqueID: 709889963
     locked: 0
