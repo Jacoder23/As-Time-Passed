@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 	float horizontalMove = 0f;
 	bool jump = false;
 	bool crouch = false;
+	public bool canMove = true;
 
     void Start()
     {
@@ -43,14 +44,17 @@ public class PlayerMovement : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		// Move our character
-		if (spells.flying)
+		if (canMove)
 		{
-			controller.Move(new Vector2(Input.GetAxisRaw("Horizontal") * runSpeed * Time.fixedDeltaTime, Input.GetAxisRaw("Vertical") * runSpeed * Time.fixedDeltaTime), crouch, jump);
+			if (spells.flying)
+			{
+				controller.Move(new Vector2(Input.GetAxisRaw("Horizontal") * runSpeed * Time.fixedDeltaTime, Input.GetAxisRaw("Vertical") * runSpeed * Time.fixedDeltaTime), crouch, jump);
+			}
+			else
+			{
+				controller.Move(new Vector2(horizontalMove * Time.fixedDeltaTime, 0), crouch, jump);
+			}
+			jump = false;
 		}
-		else
-        {
-			controller.Move(new Vector2(horizontalMove * Time.fixedDeltaTime, 0), crouch, jump);
-		}
-		jump = false;
 	}
 }

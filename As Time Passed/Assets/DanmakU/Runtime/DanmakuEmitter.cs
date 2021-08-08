@@ -22,12 +22,14 @@ public class DanmakuEmitter : DanmakuBehaviour {
   DanmakuConfig config;
   IFireable fireable;
   bool firstFrame = true;
+  public float processedAngularSpeed;
+        float newtimer;
 
   /// <summary>
   /// Start is called on the frame when a script is enabled just before
   /// any of the Update methods is called the first time.
   /// </summary>
-  void Start() {
+        void Start() {
     if (DanmakuType == null) {
       Debug.LogWarning($"Emitter doesn't have a valid DanmakuPrefab", this);
       return;
@@ -41,9 +43,19 @@ public class DanmakuEmitter : DanmakuBehaviour {
   /// Update is called every frame, if the MonoBehaviour is enabled.
   /// </summary>
   void Update() {
+            newtimer += Time.deltaTime;
     if (!firstFrame)
     {
         if (fireable == null) return;
+        if (transform.rotation.z > 0.501f)
+        {
+            processedAngularSpeed = -AngularSpeed.GetValue();
+        }
+        else
+        {
+            processedAngularSpeed = AngularSpeed.GetValue();
+        }
+                Debug.Log(transform.rotation.z);
         var deltaTime = Time.deltaTime;
         if (FrameRate > 0)
         {
@@ -57,7 +69,7 @@ public class DanmakuEmitter : DanmakuBehaviour {
                 Position = transform.position,
                 Rotation = transform.rotation.eulerAngles.z * Mathf.Deg2Rad,
                 Speed = Speed,
-                AngularSpeed = AngularSpeed,
+                AngularSpeed = processedAngularSpeed,
                 Color = Color
             };
             fireable.Fire(config);
