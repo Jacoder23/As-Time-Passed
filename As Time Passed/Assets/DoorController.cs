@@ -13,7 +13,7 @@ public class DoorController : MonoBehaviour
 
     void OnDanmakuCollision(DanmakuCollisionList collisionList)
     {
-        Debug.Log("Door collided with Danmaku bullet");
+        //Debug.Log("Door collided with Danmaku bullet");
 
         foreach (DanmakuCollision i in collisionList)
         {

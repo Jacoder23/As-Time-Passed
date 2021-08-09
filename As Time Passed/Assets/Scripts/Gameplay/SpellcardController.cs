@@ -35,6 +35,7 @@ public class SpellcardController : MonoBehaviour
         {
             if (!flying && !KosuzuAnimation.GetBool("Fire Bullet?"))
             {
+                spellTimer = 0.06f;
                 KosuzuAnimation.Play("bullet_release");
             }
         }

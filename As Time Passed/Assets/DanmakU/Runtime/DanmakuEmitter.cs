@@ -55,7 +55,7 @@ public class DanmakuEmitter : DanmakuBehaviour {
         {
             processedAngularSpeed = AngularSpeed.GetValue();
         }
-                Debug.Log(transform.rotation.z);
+                //Debug.Log(transform.rotation.z);
         var deltaTime = Time.deltaTime;
         if (FrameRate > 0)
         {

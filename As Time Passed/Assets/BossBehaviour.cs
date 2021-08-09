@@ -19,7 +19,7 @@ public class BossBehaviour : MonoBehaviour
 
     void OnDanmakuCollision(DanmakuCollisionList collisionList)
     {
-        Debug.Log("Boss collided with Danmaku bullet");
+        //Debug.Log("Boss collided with Danmaku bullet");
 
         foreach (DanmakuCollision i in collisionList)
         {

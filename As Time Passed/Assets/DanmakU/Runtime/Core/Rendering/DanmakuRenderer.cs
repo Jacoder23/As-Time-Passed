@@ -73,7 +73,12 @@ internal class DanmakuRenderer : IDisposable {
 
     foreach (var set in sets) {
       var pool = set.Pool;
-      if (pool == null || pool.ActiveCount <= 0) return;
+                //TODO: Investigate!
+      if (pool == null || pool.ActiveCount <= 0)
+                {
+                    Debug.Log("Nothing in pool");
+                    continue;
+                }
 
       var srcPositions = (Vector2*)pool.Positions.GetUnsafeReadOnlyPtr();
       var srcRotations = (float*)pool.Rotations.GetUnsafeReadOnlyPtr();

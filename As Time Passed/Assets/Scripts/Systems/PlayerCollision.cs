@@ -15,8 +15,8 @@ public class PlayerCollision : MonoBehaviour
     {
         if (transform.parent.GetComponent<SpellcardController>().spellTimer < 0f)
         {
-            Debug.Log("Player collided with Danmaku bullet");
-            Debug.Log(collisionList[0].ToString());
+            //Debug.Log("Player collided with Danmaku bullet");
+            //Debug.Log(collisionList[0].ToString());
 
             foreach (DanmakuCollision i in collisionList) {
                 i.Danmaku.Destroy();
