@@ -40,4 +40,14 @@ concepts
 recordings
 builds
 
-!patch
+!patch/*/
+!patch/*/App
+!patch/*/Builds
+!patch/*/Patches
+!patch/*/TestLauncher
+!patch/*/Updater
+!patch/*/App/*/
+!patch/*/Builds/*/
+!patch/*/Patches/*/
+!patch/*/TestLauncher/*/
+!patch/*/Updater/*/
