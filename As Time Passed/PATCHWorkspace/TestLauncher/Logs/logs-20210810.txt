@@ -1,4 +1,0 @@
-2021-08-10 00:45:48.419 +08:00 [INF] [LauncherBase.cs::StartUpdateProcess@109] ===> [Game updating] process STARTED! <===
-2021-08-10 00:45:52.706 +08:00 [ERR] [LauncherBase.cs::StartUpdateProcess@130] [Game updating] process FAILED! Our servers are not responding... Wait some minutes and retry!
-2021-08-10 00:46:06.862 +08:00 [INF] [LauncherBase.cs::StartUpdateProcess@109] ===> [Launcher updating] process STARTED! <===
-2021-08-10 00:46:11.116 +08:00 [ERR] [LauncherBase.cs::StartUpdateProcess@130] [Launcher updating] process FAILED! Our servers are not responding... Wait some minutes and retry!

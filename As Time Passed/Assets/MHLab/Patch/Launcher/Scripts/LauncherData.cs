@@ -14,11 +14,11 @@ namespace MHLab.Patch.Launcher.Scripts
 {
     public sealed class LauncherData : MonoBehaviour
     {
-        public string RemoteUrl;
-        public string LauncherExecutableName;
-        public string GameExecutableName;
+        public string RemoteUrl = "https://jacoder23.github.io/As-Time-Passed/patch";
+        public string LauncherExecutableName = "AsTimePassesLauncher.exe";
+        public string GameExecutableName = "As Time Passes.exe";
 
-        public bool LaunchAnywayOnError;
+        public bool LaunchAnywayOnError = true;
         
         public Dispatcher Dispatcher;
         public ProgressBar ProgressBar;
