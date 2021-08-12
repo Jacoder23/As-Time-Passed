@@ -12,28 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d15ae218647a2d4f85e14306846c10c, type: 3}
   m_Name: Explosion
   m_EditorClassIdentifier: 
-  file: {fileID: 8300000, guid: d5cdd7a94ee43c14fa5dc71712b62538, type: 3}
-  files: []
+  file: {fileID: 8300000, guid: 805d4309c0cf2ab4989792b0db002150, type: 3}
+  files:
+  - {fileID: 8300000, guid: 805d4309c0cf2ab4989792b0db002150, type: 3}
   useLibrary: 0
   neverRepeat: 0
   lastClipIndex: -1
   category: 
-  relativeVolume: 0.35
+  relativeVolume: 0.05
   spatialize: 0
   maxDistance: 0
   priority: 128
-  startingPitch: 1.46
-  pitchShift: 0.14
+  startingPitch: 1.11
+  pitchShift: 0.173
   playReversed: 0
   delay: 0
   ignoreTimeScale: 0
-  fadeMode: 0
+  fadeMode: 2
   fadeInDuration: 0
-  fadeOutDuration: 0
+  fadeOutDuration: 0.931
   bypassEffects: 0
   bypassListenerEffects: 0
   bypassReverbZones: 0
-  safeName: 
+  safeName: Explosion
   chorusFilter:
     enabled: 0
     dryMix: 0

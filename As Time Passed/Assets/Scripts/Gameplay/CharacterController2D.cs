@@ -17,6 +17,7 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 velocity = Vector3.zero;
+	float tempCrouchSpeed;
 
 	private void Awake()
 	{
@@ -39,13 +40,21 @@ public class CharacterController2D : MonoBehaviour
 	}
 
 
-	public void Move(Vector2 vectormove, bool crouch, bool jump)
+	public void Move(Vector2 vectormove, bool crouch, bool jump, bool doubleCrouch)
 	{
 		float move = vectormove.x;
 		float ymove;
+		if (doubleCrouch)
+		{
+			tempCrouchSpeed = m_CrouchSpeed / 4f;
+		}
+        else
+		{
+			tempCrouchSpeed = m_CrouchSpeed;
+		}
 		if(vectormove.y != 0f)
         {
-			ymove = vectormove.y * 1.5f * m_CrouchSpeed;
+			ymove = vectormove.y * 1.5f * tempCrouchSpeed;
         }
         else
         {
@@ -69,7 +78,7 @@ public class CharacterController2D : MonoBehaviour
 			if (crouch)
 			{
 				// Reduce the speed by the crouchSpeed multiplier
-				move *= m_CrouchSpeed;
+				move *= tempCrouchSpeed;
 
 				// Disable one of the colliders when crouching
 				if (m_CrouchDisableCollider != null)

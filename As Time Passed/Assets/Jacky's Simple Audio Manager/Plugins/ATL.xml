@@ -402,7 +402,8 @@
             <param name="source">BinaryReader opened on the stream to read</param>
             <param name="sizeInfo">Description of the size of the undelying stream and associated metadata</param>
             <param name="readTagParams">Reading parameters and options</param>
-            <returns>True if the stream has been successfuly read; false if not</returns>
+            <returns>True if the stream has been 
+			y read; false if not</returns>
         </member>
         <member name="T:ATL.AudioData.IMetaDataEmbedder">
             <summary>

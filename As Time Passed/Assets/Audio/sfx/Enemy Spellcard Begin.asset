@@ -18,7 +18,7 @@ MonoBehaviour:
   neverRepeat: 0
   lastClipIndex: -1
   category: 
-  relativeVolume: 0.6
+  relativeVolume: 0.4
   spatialize: 0
   maxDistance: 0
   priority: 64
@@ -27,9 +27,9 @@ MonoBehaviour:
   playReversed: 0
   delay: 0
   ignoreTimeScale: 0
-  fadeMode: 0
+  fadeMode: 2
   fadeInDuration: 0
-  fadeOutDuration: 0
+  fadeOutDuration: 0.804
   bypassEffects: 0
   bypassListenerEffects: 0
   bypassReverbZones: 0

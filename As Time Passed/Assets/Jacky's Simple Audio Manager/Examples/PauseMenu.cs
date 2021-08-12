@@ -16,6 +16,9 @@ namespace JSAM
         Canvas pauseMenu;
 
         float previousPosition;
+        public Music previousMusic;
+        public bool canPause = true;
+        public bool disabledMusic;
 
         // Start is called before the first frame update
         void Awake()
@@ -28,32 +31,41 @@ namespace JSAM
         void Update()
         {
             //previousPosition += Time.deltaTime;
-            if (Input.GetKeyDown(toggleButton))
+            if (canPause)
             {
-                pauseMenu.enabled = !pauseMenu.enabled;
+                if (Input.GetKeyDown(toggleButton))
+                {
+                    pauseMenu.enabled = !pauseMenu.enabled;
+                    if (pauseMenu.enabled)
+                    {
+                        Time.timeScale = 0;
+                        AudioManager.CrossfadeMusic(Music.PauseMenu, 0.5f);
+                        if (!disabledMusic)
+                        {
+                            GetComponent<Animator>().SetBool("Paused?", true);
+                        }
+                    }
+                    else
+                    {
+                        //AudioManager.SetMusicPlaybackPosition(previousPosition);
+                        Time.timeScale = 1;
+                        if (!disabledMusic)
+                        {
+                            AudioManager.CrossfadeMusic(previousMusic, 0.5f);
+                        }
+                        GetComponent<Animator>().SetBool("Paused?", false);
+                    }
+                }
+
                 if (pauseMenu.enabled)
                 {
-                    Time.timeScale = 0;
-                    AudioManager.CrossfadeMusic(Music.PauseMenu, 0.5f);
-                    GetComponent<Animator>().SetBool("Paused?", true);
-                }
-                else
-                {
-                    //AudioManager.SetMusicPlaybackPosition(previousPosition);
-                    Time.timeScale = 1;
-                    AudioManager.CrossfadeMusic(Music.YukariTheme, 0.5f);
-                    GetComponent<Animator>().SetBool("Paused?", false);
-                }
-            }
-
-            if (pauseMenu.enabled)
-            {
-                if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1))
-                {
-                    Time.timeScale = 0;
-                    // Sometimes the user has custom cursor locking code
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
+                    if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1))
+                    {
+                        Time.timeScale = 0;
+                        // Sometimes the user has custom cursor locking code
+                        Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
+                    }
                 }
             }
         }

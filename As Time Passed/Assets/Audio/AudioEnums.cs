@@ -10,6 +10,7 @@ namespace JSAM {
         PlayerDeath,
         PlayerLand,
         PlayerLift,
+        sans,
         WoodFootsteps
     }
     public enum Music {
