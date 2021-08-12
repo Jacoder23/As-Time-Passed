@@ -14,7 +14,7 @@ namespace MHLab.Patch.Launcher.Scripts
 {
     public sealed class LauncherData : MonoBehaviour
     {
-        public string RemoteUrl = "https://astimepasses.neocities.org/patch";
+        public string RemoteUrl = "https://astimepasses.netlify.app/patch";
         public string LauncherExecutableName = "AsTimePassesLauncher.exe";
         public string GameExecutableName = "As Time Passes.exe";
 
