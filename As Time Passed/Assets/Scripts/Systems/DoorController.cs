@@ -25,7 +25,7 @@ public class DoorController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(collisions >= 9)
+        if(collisions >= 7)
         {
             GameObject.Find("BossController").GetComponent<Animator>().SetBool("Battle Ongoing?", true);
             GetComponent<Rigidbody2D>().gravityScale = 4;

@@ -239,7 +239,7 @@ MonoBehaviour:
   musicFadeOutTime: 0
   loopMode: 1
   music: {fileID: 11400000, guid: ab12bdd2ce16ad343a35f3a3956fb3a6, type: 2}
-  onStart: 0
+  onStart: 1
   onEnable: 0
   onDisable: 0
   onDestroy: 2

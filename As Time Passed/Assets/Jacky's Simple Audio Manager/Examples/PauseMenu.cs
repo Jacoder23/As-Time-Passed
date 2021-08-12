@@ -15,23 +15,35 @@ namespace JSAM
 
         Canvas pauseMenu;
 
+        float previousPosition;
+
         // Start is called before the first frame update
         void Awake()
         {
-            pauseMenu = GetComponent<Canvas>();
+            pauseMenu = GameObject.Find("pauseMenu").GetComponent<Canvas>();
+            pauseMenu.enabled = false;
         }
 
         // Update is called once per frame
         void Update()
         {
+            //previousPosition += Time.deltaTime;
             if (Input.GetKeyDown(toggleButton))
             {
                 pauseMenu.enabled = !pauseMenu.enabled;
                 if (pauseMenu.enabled)
                 {
                     Time.timeScale = 0;
+                    AudioManager.CrossfadeMusic(Music.PauseMenu, 0.5f);
+                    GetComponent<Animator>().SetBool("Paused?", true);
                 }
-                else Time.timeScale = 1;
+                else
+                {
+                    //AudioManager.SetMusicPlaybackPosition(previousPosition);
+                    Time.timeScale = 1;
+                    AudioManager.CrossfadeMusic(Music.YukariTheme, 0.5f);
+                    GetComponent<Animator>().SetBool("Paused?", false);
+                }
             }
 
             if (pauseMenu.enabled)

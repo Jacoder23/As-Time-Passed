@@ -16,6 +16,7 @@ public class SpellcardController : MonoBehaviour
     // Not a setting
     bool oscilatingEffect;
     float bulletSoundTimer;
+    bool playFloatDownEventually = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +24,98 @@ public class SpellcardController : MonoBehaviour
         KosuzuEmitter = GameObject.Find("Player Emitter");
     }
 
+    void FixedUpdate()
+    {
+        if (KosuzuAnimation.GetBool("Fire Spell?"))
+        {
+            GetComponent<PlayerMovement>().canMove = false;
+            GetComponent<Rigidbody2D>().isKinematic = true;
+            //KosuzuEmitter.SetActive(true);
+            KosuzuEmitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
+            if (firstTime)
+            {
+                spellTimer = 1f;
+                JSAM.AudioManager.PlaySound(JSAM.Sounds.EnemyBulletGroupSpawn);
+                firstTime = false;
+                KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0.8f;
+                oscilatingEffect = false;
+            }
+            if (spellTimer > 0f)
+            {
+                KosuzuEmitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
+                if (oscilatingEffect)
+                {
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 6;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 15f;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0.8f;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.ArcLength = 0.450f;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.Count = 8f;
+                }
+                else
+                {
+                    //JSAM.AudioManager.PlaySound(JSAM.Sounds.EnemyBulletGroupSpawn);
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 4;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 20f;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0f;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.ArcLength = 360f;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.Count = 16f;
+                }
+                oscilatingEffect = !oscilatingEffect;
+            }
+            else
+            {
+                KosuzuEmitter.GetComponent<DanmakuEmitter>().Line.Count = 0;
+            }
+            //else
+            //{
+            //    KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 12;
+            //    KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 60f;
+            //    KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0.5f;
+            //    KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.ArcLength = 0.450f;
+            //}
+        }
+        else if (KosuzuAnimation.GetBool("Fire Bullet?"))
+        {
+            //KosuzuEmitter.SetActive(true);
+            KosuzuEmitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
+            if (firstTime)
+            {
+                spellTimer = 0.1f;
+                firstTime = false;
+            }
+            if (bulletSoundTimer <= 0f)
+            {
+                JSAM.AudioManager.PlaySound(JSAM.Sounds.PlayerBulletSpawn);
+                bulletSoundTimer = 0.06f;
+            }
+            KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 18f;
+            KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 40f;
+            KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0f;
+            KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.ArcLength = 0.14f;
+            KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.Count = 3f;
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().isKinematic = false;
+            GetComponent<PlayerMovement>().canMove = true;
+            firstTime = true;
+            //TODO: Fix other emitters turning off when this one is off
+            //KosuzuEmitter.SetActive(false);
+            KosuzuEmitter.GetComponent<DanmakuEmitter>().Line.Count = 0;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (playFloatDownEventually)
+        {
+            if (!KosuzuAnimation.GetBool("Charge Spell?") && !KosuzuAnimation.GetBool("Fire Spell?"))
+            {
+                KosuzuAnimation.Play("float_down");
+                playFloatDownEventually = false;
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.K))
         {
             if (flying && !KosuzuAnimation.GetBool("Charge Spell?") && !KosuzuAnimation.GetBool("Fire Spell?"))
@@ -37,7 +127,7 @@ public class SpellcardController : MonoBehaviour
         {
             if (!flying && !KosuzuAnimation.GetBool("Fire Bullet?"))
             {
-                spellTimer = 0.06f;
+                spellTimer = 0.1f;
                 KosuzuAnimation.Play("bullet_release");
             }
             //else
@@ -68,7 +158,14 @@ public class SpellcardController : MonoBehaviour
             {
                 JSAM.AudioManager.PlaySound(JSAM.Sounds.PlayerLand);
                 transform.GetComponent<Rigidbody2D>().gravityScale = 4f;
-                KosuzuAnimation.Play("float_down");
+                if (!KosuzuAnimation.GetBool("Charge Spell?") && !KosuzuAnimation.GetBool("Fire Spell?"))
+                {
+                    KosuzuAnimation.Play("float_down");
+                }
+                else
+                {
+                    playFloatDownEventually = true;
+                }
                 flying = false;
             }
         }
@@ -93,74 +190,7 @@ public class SpellcardController : MonoBehaviour
             flying = false;
         }
 
-        if (KosuzuAnimation.GetBool("Fire Spell?"))
-        {
-            GetComponent<PlayerMovement>().canMove = false;
-            GetComponent<Rigidbody2D>().isKinematic = true;
-            //KosuzuEmitter.SetActive(true);
-            KosuzuEmitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
-            if (firstTime)
-            {
-                spellTimer = 2f;
-                JSAM.AudioManager.PlaySound(JSAM.Sounds.EnemyBulletGroupSpawn);
-                firstTime = false;
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0.8f;
-            }
-            oscilatingEffect = !oscilatingEffect;
-            if (oscilatingEffect)
-            {
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 6;
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 15f;
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0.8f;
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.ArcLength = 0.450f;
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.Count = 8f;
-            }
-            else
-            {
-                JSAM.AudioManager.PlaySound(JSAM.Sounds.PlayerLand);
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 4;
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 20f;
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0f;
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.ArcLength = 360f;
-                KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.Count = 16f;
-            }
-            //else
-            //{
-            //    KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 12;
-            //    KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 60f;
-            //    KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0.5f;
-            //    KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.ArcLength = 0.450f;
-            //}
-        }
-        else if (KosuzuAnimation.GetBool("Fire Bullet?"))
-        {
-            //KosuzuEmitter.SetActive(true);
-            KosuzuEmitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
-            if (firstTime)
-            {
-                spellTimer = 0.1f;
-                firstTime = false;
-            }
-            if (bulletSoundTimer <= 0f)
-            {
-                JSAM.AudioManager.PlaySound(JSAM.Sounds.PlayerBulletSpawn);
-                bulletSoundTimer = 0.06f;
-            }
-            KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 15f;
-            KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 60f;
-            KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0f;
-            KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.ArcLength = 0.14f;
-            KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.Count = 3f;
-        }
-        else
-        {
-            GetComponent<Rigidbody2D>().isKinematic = false;
-            GetComponent<PlayerMovement>().canMove = true;
-            firstTime = true;
-            //TODO: Fix other emitters turning off when this one is off
-            //KosuzuEmitter.SetActive(false);
-            KosuzuEmitter.GetComponent<DanmakuEmitter>().Line.Count = 0;
-        }
+        // INSERT spells and bullets here if moving
 
         if(spellTimer < 0f)
         {

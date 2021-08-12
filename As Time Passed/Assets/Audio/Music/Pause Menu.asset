@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfb8002b44af6934a9ae327c8311d458, type: 3}
-  m_Name: Shrine Maiden Theme
+  m_Name: Pause Menu
   m_EditorClassIdentifier: 
-  file: {fileID: 8300000, guid: c44a17b3881e6684b9024c55c0c172c4, type: 3}
+  file: {fileID: 8300000, guid: 8b2c6f5462735084e87f5d210f10ba61, type: 3}
   files: []
   useLibrary: 0
   neverRepeat: 0
   lastClipIndex: -1
   category: 
-  relativeVolume: 1
+  relativeVolume: 0.8
   spatialize: 0
   maxDistance: 0
   priority: 128
@@ -33,7 +33,7 @@ MonoBehaviour:
   bypassEffects: 0
   bypassListenerEffects: 0
   bypassReverbZones: 0
-  safeName: ShrineMaidenTheme
+  safeName: PauseMenu
   chorusFilter:
     enabled: 0
     dryMix: 0
@@ -48,35 +48,35 @@ MonoBehaviour:
     distortionLevel: 0
   echoFilter:
     enabled: 0
-    delay: 0
-    decayRatio: 0
-    wetMix: 0
-    dryMix: 0
+    delay: 500
+    decayRatio: 0.5
+    wetMix: 0.279
+    dryMix: 0.321
   lowPassFilter:
-    enabled: 0
-    cutoffFrequency: 0
-    lowpassResonanceQ: 0
+    enabled: 1
+    cutoffFrequency: 5000
+    lowpassResonanceQ: 1
   highPassFilter:
     enabled: 0
     cutoffFrequency: 0
     highpassResonanceQ: 0
   reverbFilter:
-    enabled: 0
-    reverbPreset: 0
+    enabled: 1
+    reverbPreset: 1
     dryLevel: 0
     room: 0
     roomHF: 0
     roomLF: 0
-    decayTime: 0
-    decayHFRatio: 0
-    reflectionsLevel: 0
+    decayTime: 1
+    decayHFRatio: 0.5
+    reflectionsLevel: -10000
     reflectionsDelay: 0
     reverbLevel: 0
-    reverbDelay: 0
-    hFReference: 0
-    lFReference: 0
-    diffusion: 0
-    density: 0
+    reverbDelay: 0.04
+    hFReference: 5000
+    lFReference: 250
+    diffusion: 100
+    density: 100
   clampToLoopPoints: 0
   loopMode: 1
   loopStart: 0

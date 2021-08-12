@@ -26,14 +26,14 @@ MonoBehaviour:
   pitchShift: 0.05
   playReversed: 0
   delay: 0
-  ignoreTimeScale: 0
+  ignoreTimeScale: 1
   fadeMode: 0
   fadeInDuration: 0
   fadeOutDuration: 0
   bypassEffects: 0
   bypassListenerEffects: 0
   bypassReverbZones: 0
-  safeName: 
+  safeName: YukariTheme
   chorusFilter:
     enabled: 0
     dryMix: 0
