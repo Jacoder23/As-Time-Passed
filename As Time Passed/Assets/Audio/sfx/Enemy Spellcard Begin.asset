@@ -18,10 +18,10 @@ MonoBehaviour:
   neverRepeat: 0
   lastClipIndex: -1
   category: 
-  relativeVolume: 1
+  relativeVolume: 0.6
   spatialize: 0
   maxDistance: 0
-  priority: 128
+  priority: 64
   startingPitch: 1
   pitchShift: 0.05
   playReversed: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
   bypassEffects: 0
   bypassListenerEffects: 0
   bypassReverbZones: 0
-  safeName: 
+  safeName: EnemySpellcardBegin
   chorusFilter:
     enabled: 0
     dryMix: 0

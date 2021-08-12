@@ -7,7 +7,6 @@ namespace DanmakU {
 
 [AddComponentMenu("DanmakU/Danmaku Emitter")]
 public class DanmakuEmitter : DanmakuBehaviour {
-
   public DanmakuPrefab DanmakuType;
 
   public Range Speed = 5f;
@@ -23,12 +22,13 @@ public class DanmakuEmitter : DanmakuBehaviour {
   IFireable fireable;
   bool firstFrame = true;
   public float processedAngularSpeed;
-        float newtimer;
+        //float newtimer;
 
   /// <summary>
   /// Start is called on the frame when a script is enabled just before
   /// any of the Update methods is called the first time.
   /// </summary>
+  /// 
         void Start() {
     if (DanmakuType == null) {
       Debug.LogWarning($"Emitter doesn't have a valid DanmakuPrefab", this);
@@ -43,7 +43,7 @@ public class DanmakuEmitter : DanmakuBehaviour {
   /// Update is called every frame, if the MonoBehaviour is enabled.
   /// </summary>
   void Update() {
-            newtimer += Time.deltaTime;
+            //newtimer += Time.deltaTime;
     if (!firstFrame)
     {
         if (fireable == null) return;
@@ -78,7 +78,8 @@ public class DanmakuEmitter : DanmakuBehaviour {
     }
     else
     {
-        firstFrame = false;
+                //JSAM.AudioManager.PlaySound(JSAM.Sounds.PlayerBulletSpawn);
+                firstFrame = false;
     }
   }
 

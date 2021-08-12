@@ -26,14 +26,20 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetButtonDown("Jump") && !spells.flying)
 		{
+            if (!jump)
+            {
+				JSAM.AudioManager.PlaySound(JSAM.Sounds.PlayerLift);
+			}
 			jump = true;
 		}
 
 		if (Input.GetButtonDown("Crouch"))
 		{
             crouch = true;
+			JSAM.AudioManager.PlaySound(JSAM.Sounds.PlayerLand);
 			GameObject.Find("KosuzuFocusedCollider").GetComponent<SpriteRenderer>().enabled = true;
-		} else if (Input.GetButtonUp("Crouch"))
+		}
+		else if (Input.GetButtonUp("Crouch"))
 		{
 			crouch = false;
 			GameObject.Find("KosuzuFocusedCollider").GetComponent<SpriteRenderer>().enabled = false;
@@ -48,7 +54,14 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			if (spells.flying)
 			{
-				controller.Move(new Vector2(Input.GetAxisRaw("Horizontal") * runSpeed * Time.fixedDeltaTime, Input.GetAxisRaw("Vertical") * runSpeed * Time.fixedDeltaTime), crouch, jump);
+				if (crouch)
+				{
+					controller.Move(new Vector2(Input.GetAxisRaw("Horizontal") * runSpeed * Time.fixedDeltaTime, Input.GetAxisRaw("Vertical") * runSpeed * Time.fixedDeltaTime), crouch, jump);
+				}
+				else
+                {
+					controller.Move(new Vector2(Input.GetAxisRaw("Horizontal") * runSpeed * 2 * Time.fixedDeltaTime, Input.GetAxisRaw("Vertical") * runSpeed * 2 * Time.fixedDeltaTime), crouch, jump);
+				}
 			}
 			else
 			{

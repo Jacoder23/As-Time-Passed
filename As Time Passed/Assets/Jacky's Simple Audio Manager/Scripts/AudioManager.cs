@@ -150,7 +150,7 @@ namespace JSAM
         /// </summary>
         [Tooltip("If true, keeps AudioManager alive through scene loads. You're recommended to disable this if your AudioManager is instanced")]
         [SerializeField]
-        bool dontDestroyOnLoad = true;
+        bool dontDestroyOnLoad = false;
 
         /// <summary>
         /// If true, adds more Audio Sources automatically if you exceed the starting count, you are recommended to keep this enabled
