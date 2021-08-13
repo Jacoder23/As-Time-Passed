@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LeaveFromStage : MonoBehaviour
 {
     public bool canLeave = false;
+    public float distance = 7.65f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class LeaveFromStage : MonoBehaviour
     {
         if (canLeave)
         {
-            if (transform.position.x > 7.7f)
+            if (transform.position.x > distance)
             {
                 GameObject.Find("SceneTransitions").GetComponent<MoveBetweenScenes>().GoToScene(SceneManager.GetActiveScene().buildIndex + 1);
             }

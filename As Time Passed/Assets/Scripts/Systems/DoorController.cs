@@ -83,23 +83,31 @@ public class DoorController : MonoBehaviour
 
     void Update()
     {
-        if (GameObject.Find("KosuzuController").transform.position.x > transform.position.x)
+        if (GameObject.Find("KosuzuController") != null)
         {
-            //JSAM.AudioManager.PlayMusic(JSAM.Music.YukariTheme);
-            GameObject.Find("BossController").GetComponent<Animator>().SetBool("Battle Ongoing?", true);
-            GetComponent<Rigidbody2D>().gravityScale = 4;
-            if (doaflip)
+            if (GameObject.Find("KosuzuController").transform.position.x > transform.position.x)
             {
-                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                //JSAM.AudioManager.PlayMusic(JSAM.Music.YukariTheme);
+                if (GameObject.Find("BossController") != null)
+                {
+                    GameObject.Find("BossController").GetComponent<Animator>().SetBool("Battle Ongoing?", true);
+                }
+                GetComponent<Rigidbody2D>().gravityScale = 4;
+                if (doaflip)
+                {
+                    GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                }
+                StartCoroutine(DeleteCollider2D());
             }
-            StartCoroutine(DeleteCollider2D());
         }
     }
 
     IEnumerator DeleteCollider2D()
     {
+        if(GameObject.Find("Main Camera").GetComponent<JSAM.PauseMenu>() != null) {
         GameObject.Find("Main Camera").GetComponent<JSAM.PauseMenu>().disabledMusic = false;
         GameObject.Find("Main Camera").GetComponent<JSAM.PauseMenu>().canPause = true;
+        }
         if (!donealready)
         {
             JSAM.AudioManager.CrossfadeMusic(GameObject.Find("Main Camera").GetComponent<JSAM.PauseMenu>().previousMusic, 0.5f);

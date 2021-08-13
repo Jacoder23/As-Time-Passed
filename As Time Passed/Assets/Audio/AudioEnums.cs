@@ -14,6 +14,7 @@ namespace JSAM {
         WoodFootsteps
     }
     public enum Music {
+        MarketTheme,
         PauseMenu,
         ShrineMaidenTheme,
         TitleTheme,

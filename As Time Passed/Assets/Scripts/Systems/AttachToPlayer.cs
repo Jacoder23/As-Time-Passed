@@ -8,6 +8,9 @@ public class AttachToPlayer : MonoBehaviour
     public GameObject ObjectToAttachTo;
     public bool changeScale;
     public bool changeRotation = true;
+    public float xoffset;
+    public float yoffset;
+    public float zoffset;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +22,9 @@ public class AttachToPlayer : MonoBehaviour
     void LateUpdate()
     {
         transform.position = ObjectToAttachTo.transform.position;
+        Transform temp = transform;
+        temp.position = new Vector3(temp.position.x + xoffset, temp.position.y + yoffset, temp.position.z + zoffset);
+        transform.position = temp.position;
         if (changeRotation)
         {
             transform.localRotation = ObjectToAttachTo.transform.localRotation;

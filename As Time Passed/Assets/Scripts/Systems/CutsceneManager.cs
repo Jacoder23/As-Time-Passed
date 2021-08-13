@@ -12,7 +12,8 @@ public class CutsceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1f;
+        KosuzuPrefab.SetActive(false);
     }
 
     // Update is called once per frame
@@ -23,8 +24,9 @@ public class CutsceneManager : MonoBehaviour
             if (attempts == 3)
             {
                 // Play and wait for end of animation where she dresses up and then burns to a crisp and looks scared
-                GameObject temp = Instantiate(KosuzuPrefab);
-                temp.SetActive(true);
+                GameObject.Find("Main Camera").GetComponent<Animator>().Play("youkai_transformation");
+                JSAM.AudioManager.PlaySound(JSAM.Sounds.EnemySpellcardBegin);
+                KosuzuPrefab.SetActive(true);
                 GetComponent<Animator>().Play("title_akyuu_sleeping");
                 attempts += 1;
             }

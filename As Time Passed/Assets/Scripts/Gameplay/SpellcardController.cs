@@ -20,7 +20,14 @@ public class SpellcardController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        KosuzuAnimation = GameObject.Find("KosuzuController").GetComponent<Animator>();
+        if (GameObject.Find("KosuzuController") != null)
+        {
+            KosuzuAnimation = GameObject.Find("KosuzuController").GetComponent<Animator>();
+        }
+        else
+        {
+            KosuzuAnimation = GameObject.Find("KosuzuController(Clone)").GetComponent<Animator>();
+        }
         KosuzuEmitter = GameObject.Find("Player Emitter");
     }
 

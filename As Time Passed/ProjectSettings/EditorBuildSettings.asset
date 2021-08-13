@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: 8814d7d7cd9de194399b2973035de872
   - enabled: 1
+    path: Assets/Scenes/MarketScene.unity
+    guid: 579c98b2d831d144fb8e2b4b99954165
+  - enabled: 1
     path: Assets/Scenes/ReimuScene.unity
     guid: 6d85e710d561fca42a751237d4d9845f
   - enabled: 1

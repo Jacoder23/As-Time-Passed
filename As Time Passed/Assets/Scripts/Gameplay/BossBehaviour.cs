@@ -150,6 +150,75 @@ public class BossBehaviour : MonoBehaviour
                 }
                 break;
             case 2:
+                // Spellcard
+                if (spellTimer >= 0.25f)
+                {
+                    emitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
+                }
+
+                emitter.Speed = 2.5f;
+                emitter.AngularSpeed = 0.2f;
+                emitter.FireRate = 11f;
+                emitter.Arc.Count = 8;
+                emitter.Arc.ArcLength = 180;
+                emitter.Arc.Radius = -1;
+                if (transitionPhase)
+                {
+                    JSAM.AudioManager.PlaySound(JSAM.Sounds.EnemySpellcardBegin);
+                    GameObject.Find("BossController").GetComponent<Animator>().SetInteger("Phase", phase);
+                    spellTimer = 0f;
+                    HP = 120;
+                    maxHP = HP;
+                    transitionPhase = false;
+                    emitter.GetComponent<DanmakuEmitter>().Line.Count = 0;
+                    if (sansMode)
+                    {
+                        HP = HP / 10;
+                    }
+                }
+                if (GameObject.Find("BossController").GetComponent<SpriteRenderer>().flipX)
+                {
+                    emitter.transform.localRotation = Quaternion.Euler(0, 0, 180);
+                }
+                else
+                {
+                    emitter.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                }
+                break;
+            case 3:
+                if (spellTimer >= 0.25f)
+                {
+                    emitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
+                }
+
+                emitter.Speed = 4.5f;
+                emitter.AngularSpeed = -0.2f;
+                emitter.FireRate = 10f;
+                emitter.Arc.Count = 8;
+                emitter.Arc.ArcLength = 180;
+                emitter.Arc.Radius = 1;
+                if (transitionPhase)
+                {
+                    JSAM.AudioManager.PlaySound(JSAM.Sounds.EnemySpellcardBegin);
+                    GameObject.Find("BossController").GetComponent<Animator>().SetInteger("Phase", phase);
+                    spellTimer = 0f;
+                    HP = 150;
+                    maxHP = HP;
+                    transitionPhase = false;
+                    emitter.GetComponent<DanmakuEmitter>().Line.Count = 0;
+                    if (sansMode)
+                    {
+                        HP = HP / 10;
+                    }
+                }
+                if (GameObject.Find("BossController").GetComponent<SpriteRenderer>().flipX)
+                {
+                    emitter.transform.localRotation = Quaternion.Euler(0, 0, 180);
+                }
+                else
+                {
+                    emitter.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                }
                 break;
         }
     }
@@ -181,7 +250,7 @@ public class BossBehaviour : MonoBehaviour
                         emitter.transform.localRotation = Quaternion.Euler(0, 0, 0);
                         GameObject.Find("BossController").GetComponent<Animator>().SetInteger("Phase", phase);
                         spellTimer = 0f;
-                        HP = 300;
+                        HP = 270;
                         maxHP = HP;
                         transitionPhase = false;
                         emitter.GetComponent<DanmakuEmitter>().Line.Count = 0;

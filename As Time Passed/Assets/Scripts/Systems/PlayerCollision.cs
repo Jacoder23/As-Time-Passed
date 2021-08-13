@@ -20,11 +20,25 @@ public class PlayerCollision : MonoBehaviour
     {
         if (invincibilityTimer <= 0f)
         {
-            GameObject.Find("KosuzuController").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            if (GameObject.Find("KosuzuController") != null)
+            {
+                GameObject.Find("KosuzuController").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                GameObject.Find("KosuzuController(Clone)").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            }
         }
         else
         {
-            GameObject.Find("KosuzuController").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+            if (GameObject.Find("KosuzuController") != null)
+            {
+                GameObject.Find("KosuzuController").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+            }
+            else
+            {
+                GameObject.Find("KosuzuController(Clone)").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+            }
         }
         invincibilityTimer -= Time.deltaTime;
     }
@@ -46,7 +60,18 @@ public class PlayerCollision : MonoBehaviour
                     invincibilityTimer = 3f;
                 }
             }
-            GameObject.Find("PlayerHPSlider").GetComponent<Image>().fillAmount = (float)HP / (float)maxHP;
+            if (GameObject.Find("PlayerHPSlider") != null)
+            {
+                GameObject.Find("PlayerHPSlider").GetComponent<Image>().fillAmount = (float)HP / (float)maxHP;
+            }
+        }
+        if(HP <= 0)
+        {
+            Time.timeScale = 0.5f;
+            if(invincibilityTimer <= 5f)
+            {
+                GameObject.Find("SceneTransitions").GetComponent<MoveBetweenScenes>().GoToScene(0);
+            }
         }
     }
 }

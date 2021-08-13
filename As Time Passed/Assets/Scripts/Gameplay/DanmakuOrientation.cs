@@ -10,8 +10,15 @@ public class DanmakuOrientation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GameObject.Find("KosuzuController").GetComponent<CharacterController2D>();
-        animationController = GameObject.Find("KosuzuController").GetComponent<Animator>();
+        if (GameObject.Find("KosuzuController") != null) {
+            playerController = GameObject.Find("KosuzuController").GetComponent<CharacterController2D>();
+            animationController = GameObject.Find("KosuzuController").GetComponent<Animator>();
+        }
+        else
+        {
+            playerController = GameObject.Find("KosuzuController(Clone)").GetComponent<CharacterController2D>();
+            animationController = GameObject.Find("KosuzuController(Clone)").GetComponent<Animator>();
+        }
     }
 
     // Update is called once per frame
