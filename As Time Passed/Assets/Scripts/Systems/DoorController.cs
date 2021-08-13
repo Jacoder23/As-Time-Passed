@@ -99,6 +99,7 @@ public class DoorController : MonoBehaviour
     IEnumerator DeleteCollider2D()
     {
         GameObject.Find("Main Camera").GetComponent<JSAM.PauseMenu>().disabledMusic = false;
+        GameObject.Find("Main Camera").GetComponent<JSAM.PauseMenu>().canPause = true;
         if (!donealready)
         {
             JSAM.AudioManager.CrossfadeMusic(GameObject.Find("Main Camera").GetComponent<JSAM.PauseMenu>().previousMusic, 0.5f);

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerCollision : MonoBehaviour
 {
-    int collisions;
-    int HP = 4;
+    public int collisions;
+    public int HP = 4;
     int maxHP = 4;
     float invincibilityTimer;
     // Start is called before the first frame update

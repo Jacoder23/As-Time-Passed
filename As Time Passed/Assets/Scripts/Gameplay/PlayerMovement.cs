@@ -57,8 +57,8 @@ public class PlayerMovement : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		// Move our character
-		if (canMove)
-		{
+		//if (canMove)
+		//{
 			if (spells.flying)
 			{
 				if (crouch)
@@ -67,7 +67,14 @@ public class PlayerMovement : MonoBehaviour {
 				}
 				else
                 {
-					controller.Move(new Vector2(Input.GetAxisRaw("Horizontal") * runSpeed * 3 * Time.fixedDeltaTime, Input.GetAxisRaw("Vertical") * runSpeed * 3 * Time.fixedDeltaTime), crouch, jump, doubleCrouch);
+					if (canMove)
+					{
+						controller.Move(new Vector2(Input.GetAxisRaw("Horizontal") * runSpeed * 3 * Time.fixedDeltaTime, Input.GetAxisRaw("Vertical") * runSpeed * 3 * Time.fixedDeltaTime), crouch, jump, doubleCrouch);
+					}
+					else
+					{
+						controller.Move(new Vector2(Input.GetAxisRaw("Horizontal") * runSpeed * 1 * Time.fixedDeltaTime, Input.GetAxisRaw("Vertical") * runSpeed * 1 * Time.fixedDeltaTime), crouch, jump, doubleCrouch);
+					}
 				}
 			}
 			else
@@ -75,6 +82,6 @@ public class PlayerMovement : MonoBehaviour {
 				controller.Move(new Vector2(horizontalMove * Time.fixedDeltaTime, 0), crouch, jump, doubleCrouch);
 			}
 			jump = false;
-		}
+		//}
 	}
 }

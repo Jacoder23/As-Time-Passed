@@ -34,7 +34,7 @@ public class SpellcardController : MonoBehaviour
             KosuzuEmitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
             if (firstTime)
             {
-                spellTimer = 1f;
+                spellTimer = 1.2f;
                 JSAM.AudioManager.PlaySound(JSAM.Sounds.EnemyBulletGroupSpawn);
                 firstTime = false;
                 KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0.8f;
@@ -45,8 +45,8 @@ public class SpellcardController : MonoBehaviour
                 KosuzuEmitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
                 if (oscilatingEffect)
                 {
-                    KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 6;
-                    KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 15f;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 8;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 20f;
                     KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0.8f;
                     KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.ArcLength = 0.450f;
                     KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.Count = 8f;
@@ -54,8 +54,8 @@ public class SpellcardController : MonoBehaviour
                 else
                 {
                     //JSAM.AudioManager.PlaySound(JSAM.Sounds.EnemyBulletGroupSpawn);
-                    KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 4;
-                    KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 20f;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().Speed = 6;
+                    KosuzuEmitter.GetComponent<DanmakuEmitter>().FireRate = 26f;
                     KosuzuEmitter.GetComponent<DanmakuEmitter>().AngularSpeed = 0f;
                     KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.ArcLength = 360f;
                     KosuzuEmitter.GetComponent<DanmakuEmitter>().Arc.Count = 16f;

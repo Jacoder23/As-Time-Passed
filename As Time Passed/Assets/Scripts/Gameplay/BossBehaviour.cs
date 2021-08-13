@@ -54,7 +54,7 @@ public class BossBehaviour : MonoBehaviour
             phasesLeft -= 1;
             transitionPhase = true;
         }
-        if (HP <= 0 && phasesLeft == 0)
+        if (HP <= 0 && phasesLeft < 0)
         {
             transform.parent.GetComponent<Rigidbody2D>().isKinematic = false;
             transform.parent.GetComponent<Rigidbody2D>().gravityScale = 4;
@@ -254,6 +254,14 @@ public class BossBehaviour : MonoBehaviour
                 {
                     emitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
                 }
+                if(spellTimer >= 1.25f)
+                {
+                    emitter.AngularSpeed = -0.4f;
+                    emitter.FireRate = 10f;
+                    emitter.Arc.Count = Random.Range(1, 2) * 6;
+                    emitter.Arc.ArcLength = 180;
+                    emitter.Arc.Radius = 0.2f;
+                }
 
                 if (spellTimer > -12)
                 {
@@ -263,11 +271,6 @@ public class BossBehaviour : MonoBehaviour
                 {
                     emitter.Speed = 6f;
                 }
-                emitter.AngularSpeed = -0.4f;
-                emitter.FireRate = 10f;
-                emitter.Arc.Count = Random.Range(1, 2) * 6;
-                emitter.Arc.ArcLength = 180;
-                emitter.Arc.Radius = 0.2f;
                 if (transitionPhase)
                 {
                     JSAM.AudioManager.PlaySound(JSAM.Sounds.EnemySpellcardBegin);
@@ -304,6 +307,7 @@ public class BossBehaviour : MonoBehaviour
                 }
                 else
                 {
+                    emitter.Arc.Count = 8f;
                     transform.parent.GetComponent<Rigidbody2D>().isKinematic = false;
                     transform.parent.GetComponent<Rigidbody2D>().gravityScale = 4;
                     transform.parent.GetComponent<CircleCollider2D>().enabled = false;
@@ -316,27 +320,29 @@ public class BossBehaviour : MonoBehaviour
                     emitter.GetComponent<DanmakuEmitter>().Line.Count = 1;
                 }
 
-                if (spellTimer > 9)
+                if (spellTimer < 9)
                 {
                     emitter.Speed = -spellTimer;
-                    emitter.AngularSpeed = -spellTimer/10;
+                    //emitter.AngularSpeed = -spellTimer/10;
                 }
                 else
                 {
                     emitter.Speed = 9f;
-                    emitter.AngularSpeed = -spellTimer/10;
+                    //emitter.AngularSpeed = -spellTimer/10;
                 }
                 if (Mathf.Round(spellTimer) % 2 == 0)
                 {
-                    emitter.AngularSpeed = spellTimer/10;
+                    //emitter.AngularSpeed = spellTimer/10;
                 }
                 if (spellTimer > 15)
                 {
                     spellTimer = 5.26f;
                 }
-                emitter.FireRate = 20f;
+                emitter.FireRate = 8f;
                 emitter.Arc.ArcLength = 360+spellTimer;
-                emitter.Arc.Radius = -2f;
+                emitter.Arc.Radius = 2f;
+                emitter.AngularSpeed = 0.1f;
+                emitter.Speed = emitter.Speed.GetValue() * 0.525f;
                 if (transitionPhase)
                 {
                     JSAM.AudioManager.PlaySound(JSAM.Sounds.EnemySpellcardBegin);

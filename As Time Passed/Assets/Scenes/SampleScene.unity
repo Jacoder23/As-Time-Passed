@@ -2517,7 +2517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggleButton: 27
   previousMusic: 3
-  canPause: 1
+  canPause: 0
   disabledMusic: 0
 --- !u!1 &542555399
 GameObject:
@@ -29925,6 +29925,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2923419943140560079, guid: 0433f00aded2bee47a228026e60ecc64,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2923419944139853681, guid: 0433f00aded2bee47a228026e60ecc64,
         type: 3}
       propertyPath: m_UsedByEffector
@@ -29989,6 +29994,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: KosuzuController
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444328036897051136, guid: 0433f00aded2bee47a228026e60ecc64,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0433f00aded2bee47a228026e60ecc64, type: 3}
