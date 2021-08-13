@@ -125,10 +125,21 @@ public class SpellcardController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.K))
         {
-            if (!flying && !KosuzuAnimation.GetBool("Fire Bullet?"))
+            if (!GetComponent<Animator>().GetBool("Running?"))
             {
-                spellTimer = 0.1f;
-                KosuzuAnimation.Play("bullet_release");
+                if (!flying && !KosuzuAnimation.GetBool("Fire Bullet?"))
+                {
+                    spellTimer = 0.1f;
+                    KosuzuAnimation.Play("bullet_release");
+                }
+            }
+            else
+            {
+                if (!flying && !KosuzuAnimation.GetBool("Fire Bullet?"))
+                {
+                    spellTimer = 0.1f;
+                    KosuzuAnimation.Play("bullet_run");
+                }
             }
             //else
             //{

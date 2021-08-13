@@ -76,12 +76,21 @@ public class PlayerMovement : MonoBehaviour {
 						controller.Move(new Vector2(Input.GetAxisRaw("Horizontal") * runSpeed * 1 * Time.fixedDeltaTime, Input.GetAxisRaw("Vertical") * runSpeed * 1 * Time.fixedDeltaTime), crouch, jump, doubleCrouch);
 					}
 				}
+			GetComponent<Animator>().SetBool("Running?", false);
+		}
+		else
+		{
+			controller.Move(new Vector2(horizontalMove * Time.fixedDeltaTime, 0), crouch, jump, doubleCrouch);
+			if (horizontalMove > 0.2f * runSpeed || horizontalMove < -0.2f * runSpeed)
+			{
+				GetComponent<Animator>().SetBool("Running?", true);
 			}
 			else
 			{
-				controller.Move(new Vector2(horizontalMove * Time.fixedDeltaTime, 0), crouch, jump, doubleCrouch);
+				GetComponent<Animator>().SetBool("Running?", false);
 			}
-			jump = false;
+		}
+		jump = false;
 		//}
 	}
 }

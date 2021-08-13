@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LeaveFromStage : MonoBehaviour
 {
+    public bool canLeave = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,13 +15,16 @@ public class LeaveFromStage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x > 8.7f)
+        if (canLeave)
         {
-            GameObject.Find("SceneTransitions").GetComponent<MoveBetweenScenes>().GoToScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-        else if (transform.position.x < -8.7f)
-        {
-            GameObject.Find("SceneTransitions").GetComponent<MoveBetweenScenes>().GoToScene(SceneManager.GetActiveScene().buildIndex - 1);
+            if (transform.position.x > 7.7f)
+            {
+                GameObject.Find("SceneTransitions").GetComponent<MoveBetweenScenes>().GoToScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else if (transform.position.x < -8.7f)
+            {
+                GameObject.Find("SceneTransitions").GetComponent<MoveBetweenScenes>().GoToScene(SceneManager.GetActiveScene().buildIndex - 1);
+            }
         }
     }
 }

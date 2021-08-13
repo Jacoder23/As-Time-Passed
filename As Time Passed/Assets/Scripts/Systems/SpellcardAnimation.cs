@@ -22,10 +22,21 @@ public class SpellcardAnimation : StateMachineBehaviour
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        //if (stateInfo.IsTag("FireSpell"))
+        //{
+        //    animator.SetBool("Fire Spell?", !animator.GetBool("Fire Spell?"));
+        //}
+        if (stateInfo.IsTag("FireBullet"))
+        {
+            animator.SetBool("Fire Bullet?", !animator.GetBool("Fire Bullet?"));
+        }
+        //else if (stateInfo.IsTag("ChargeSpell"))
+        //{
+        //    animator.SetBool("Charge Spell?", !animator.GetBool("Charge Spell?"));
+        //}
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
